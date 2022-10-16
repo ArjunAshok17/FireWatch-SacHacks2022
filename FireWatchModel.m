@@ -1,0 +1,1 @@
+function fire_threat = FireWatchModel
