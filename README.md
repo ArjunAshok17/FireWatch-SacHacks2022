@@ -6,7 +6,7 @@ This is the FireWatch project the "c team", Sanjita Maram (@sanjit2344) and I (@
 
 # Idea #
 
-- An app utilizing machine learning (linear & logistic regression models) to predict the highest risk for fires based on past and present weather patterns
+- An app utilizing machine learning (linear & logistic regression models) to predict the highest risk for wildfires based on past and present weather patterns
 
 ## Plan ##
 
