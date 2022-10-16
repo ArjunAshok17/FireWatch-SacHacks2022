@@ -3,8 +3,8 @@ function [theta, J_progress] = LinearRegression(spreadsheet, workbook, X, Y, alp
     %[X_train, Y_train, X_cv, Y_cv, X_test, Y_test] = DataImport(spreadsheet, workbook, X, Y);
     pkg load io
     
-    X = xlsread(spreadsheet,workbook,X);
-    Y = xlsread(spreadsheet,workbook,Y);
+    X = xlsread(spreadsheet, workbook, X);
+    Y = xlsread(spreadsheet, workbook, Y);
     
     X = X .- 43843; % Dates are stored as days after 1/1/1900, so reduce each one to be days after initial date (43843 days)
     
