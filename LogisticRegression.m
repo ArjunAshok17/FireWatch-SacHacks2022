@@ -1,4 +1,4 @@
-function [fire_risk] = LogisticRegression(spreadsheet, workbook, X, Y, alpha, num_iters, lambda)
+function fire_risk = LogisticRegression(spreadsheet, workbook, X, Y, alpha, num_iters, lambda)
     % Import Data %
     pkg load io
     
@@ -21,8 +21,8 @@ function [fire_risk] = LogisticRegression(spreadsheet, workbook, X, Y, alpha, nu
     X = X_norm;
 
     % Gradient Descent %
-    theta_finder(X, Y, columns(X), lambda);
-    predict(theta_log, X);
+    theta_log = theta_finder(X, Y, columns(X), lambda);
+    probability = predict(theta_log, X);
 
     % update fire risk
     fire_risk = probability;

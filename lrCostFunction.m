@@ -5,10 +5,10 @@ function [J, grad] = lrCostFunction(theta, X, y, lambda)
     grad = zeros(size(theta));
 
     % calculating partial derivative
-    z   = X * theta;   % m x 1 %placeholder variable z
+    z = X * theta;   % m x 1 %placeholder variable z
     g_z = sigmoid(z);  % m x 1 %sigmoid hypothesis definition
     
-    reg_term = (lambda/(2 * m)) * sum(theta(2:end) .^ 2); %regularization term as per definition (reference costFunctionReg (week 3) for details
+    reg_term = (lambda / (2 * m)) * sum(theta(2:end) .^ 2); %regularization term as per definition (reference costFunctionReg (week 3) for details
     
     J = (1 / m) * sum((-y .* log(g_z)) - ((1 - y) .* log(1 - g_z))) + reg_term; % scalar %defining sigmoid cost function with reg_term added on
     

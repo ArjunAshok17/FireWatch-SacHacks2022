@@ -1,4 +1,4 @@
-function [theta_lin] = LinearRegression(spreadsheet, workbook, X, Y, alpha, num_iters)
+function theta_lin = LinearRegression(spreadsheet, workbook, X, Y, alpha, num_iters)
     % Import Data %
     %[X_train, Y_train, X_cv, Y_cv, X_test, Y_test] = DataImport(spreadsheet, workbook, X, Y);
     pkg load io
@@ -8,7 +8,7 @@ function [theta_lin] = LinearRegression(spreadsheet, workbook, X, Y, alpha, num_
     
     X = X .- 43831; % Dates are stored as days after 1/1/1900, so reduce each one to be days after initial date (43831 days from 01/01/2020)
     
-    X = [ones(size(X, 1), 1) X]; % Bias term for matrix multiplication
+    %X = [ones(size(X, 1), 1) X]; % Bias term for matrix multiplication
     
     % Normalize Features %
     X_norm = X;
@@ -28,16 +28,16 @@ function [theta_lin] = LinearRegression(spreadsheet, workbook, X, Y, alpha, num_
     
     % Gradient Descent %
     for iter = 1:num_iters
-        expectedVal = X * theta';
+        expectedVal = X * theta_lin';
         error = expectedVal - Y;
         
-        for j = 1:length(theta)
+        for j = 1:length(theta_lin)
             theta_lin(j) = theta_lin(j) - ((alpha / m) * sum(X' * error));
         endfor
         
         %theta = theta - ((alpha/m) * (X' * error));
         
-        J_progress(iter) = (1 / (2 * m)) * sum(((X * theta') - Y) .^ 2); % Calculate and save cost
+        J_progress(iter) = (1 / (2 * m)) * sum(((X * theta_lin') - Y) .^ 2); % Calculate and save cost
         %J_progress(iter) = computeCost(X, Y, theta);
         % Scalar          = Scalar      * Scalar Sum of (((m x 1 * 1 x 2) - m x 1) .^ 2)
         %                                                 m x 2 - m x 1

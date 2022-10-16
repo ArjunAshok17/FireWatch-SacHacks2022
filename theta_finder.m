@@ -10,7 +10,7 @@ function [theta_vals] = theta_finder(X, y, num_labels, lambda)
 
     % Some useful variables
     m = size(X, 1);
-    n = size(X, 2);
+    n = size(X, 2) - 1; % take into account the bias term
 
     theta_vals = zeros(num_labels, n + 1);
     initial_theta = zeros(n + 1, 1); % sets initial theta
