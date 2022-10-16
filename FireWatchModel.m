@@ -14,27 +14,28 @@ function fire_threat = FireWatchModel(dataset, wb, X, Y, date)
     % lambda    -> regularization constant, determines the fitting of the model to dataset
     % these values will vary for the linear vs logistic regression models
     % and are manually set constants based on experimentation with the dataset
-    alpha_1 = .1;
-    num_iters_1 = 500;
+    alpha_1 = .0001;
+    num_iters_1 = 5000;
 
-    alpha_2 = .1;
-    num_iters_2 = 500;
+    alpha_2 = .0001;
+    num_iters_2 = 5000;
 
-    lambda = .4;
+    lambda = .001;
 
     % Overall FireThreat Trend %
     % call the LinearRegression function to gauge overall trend in fire risk
-    LinearRegression(dataset, wb, X, Y, alpha_1, num_iters_1);
+    theta_lin = LinearRegression(dataset, wb, X, Y, alpha_1, num_iters_1);
 
     % convert date to same format for using linear regression model
     date = date - 43831;
 
     % calculate overall trend using the output from linear regression model
-    fire_threat_offset = theta_lin(0) + theta_lin(1) * date;
+    fire_threat_offset = theta_lin(1) + theta_lin(2) * date;
 
     % Calculate FireThreat %
-    LogisticRegression(dataset, wb, X, Y, alpha_2, num_iters_2);
+    fire_threat = LogisticRegression(dataset, wb, X, Y, alpha_2, num_iters_2, lambda);
+    fire_threat = fire_threat + fire_threat_offset;
 
     % Output FireThreat %
-    fire_threat
+    printf("%f", fire_threat);
 endfunction
